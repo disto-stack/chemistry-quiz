@@ -1,6 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700;900&display=swap');
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* You can add global styles to this file, and also import other style files */
+@layer base {
+  * {
+    @apply font-sourceCode
+  }
+
+  .button {
+    @apply rounded-xl text-center block w-full py-3 text-white font-bold;
+  }
+
+  .button-primary {
+    @apply button bg-palette-dark;
+  }
+}
 
