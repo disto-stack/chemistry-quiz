@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "chemistry-b48c4": {
+      "hosting": {
+        "chemistry-quiz": [
+          "chemistry-b48c4"
+        ]
+      }
+    }
+  }
+}
