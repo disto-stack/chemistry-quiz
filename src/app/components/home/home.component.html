@@ -1,14 +1,14 @@
 <div class="logo w-mobile mx-auto">
     <img class="w-full" src="../assets/logo.webp" alt="App Logo">
-  </div>
+</div>
 
-  <section>
-    <form>
-      <label for="player">
-        <span class="block text-white mb-1">Nombre de jugador</span>
-        <input class="block rounded w-full px-2 py-3 mb-4 text-sm" type="text" id="player" placeholder="Escribe el nombre...">
-      </label>
+<section>
+  <form #userName="ngForm" (submit)="submitUser(userName.value.player)">
+    <label for="player">
+      <span class="block text-white mb-1">Nombre de jugador</span>
+      <input class="block rounded w-full px-2 py-3 mb-4 text-sm" type="text" name="player" id="player" placeholder="Escribe el nombre..." ngModel>
+    </label>
 
-      <button class="button-primary">A Jugar!</button>
-    </form>
-  </section>
+    <button class="button-primary">A Jugar!</button>
+  </form>
+</section>

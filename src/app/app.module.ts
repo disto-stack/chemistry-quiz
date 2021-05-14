@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ChooseComponent } from './components/choose/choose.component';
 
 import { environment } from '../environments/environment';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    FormsModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
