@@ -11,15 +11,11 @@ export class HomeComponent implements OnInit {
     private _router: Router
   ) { }
 
-  ngOnInit(): void {
-    if (localStorage.getItem('player')) this._router.navigateByUrl('/choose');
-  }
+  ngOnInit(): void {}
 
   submitUser(player: string): void {
     if (!localStorage.getItem('player')) {
-      if (player !== undefined && player !== null && player !== '') {
-        localStorage.setItem('player', player);
-      }
+      localStorage.setItem('player', player); 
     }
 
     this._router.navigateByUrl('/choose');

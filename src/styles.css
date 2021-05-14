@@ -10,11 +10,11 @@
   }
 
   .button {
-    @apply rounded-xl text-center block w-full py-3 text-white font-bold;
+    @apply rounded-xl text-center block w-full py-2 text-white font-bold;
   }
 
   .button-primary {
-    @apply button bg-palette-dark;
+    @apply button bg-palette-dark transition duration-200 ease-in-out hover:bg-palleteHover-dark;
   }
 }
 

@@ -21,6 +21,10 @@ module.exports = {
             dark: '#27ae60',
             error: '#e74c3c'
           },
+          palleteHover: {
+            primary: 'rgba(46,204,113,.7)',
+            dark: 'rgba(39,174,96,.8)'
+          },
           podium: {
             gold: '#c9b037',
             silver: '#b4b4b4',
