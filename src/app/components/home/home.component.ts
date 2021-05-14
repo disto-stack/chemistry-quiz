@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Player } from 'src/app/types/player';
+import { PlayerService } from '../../providers/player.service';
 
 @Component({
   selector: 'app-home',
@@ -8,16 +10,29 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private _router: Router
+    private _router: Router,
+    private _player: PlayerService
   ) { }
 
   ngOnInit(): void {}
 
-  submitUser(player: string): void {
+  submitUser(playerName: string): void {
+    let player: Player = {
+      name: playerName,
+      answers: [],
+    }
+
+    let playerID = this._player.addPlayer(player);
+    
+    
+
+    /* 
     if (!localStorage.getItem('player')) {
+      
       localStorage.setItem('player', player); 
     }
 
     this._router.navigateByUrl('/choose');
+    */
   }
 }
