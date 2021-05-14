@@ -6,7 +6,7 @@ import { ChooseComponent } from './components/choose/choose.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: '/choose', component: ChooseComponent }
+  { path: 'choose', component: ChooseComponent }
 ];
 
 @NgModule({
