@@ -22,17 +22,13 @@ export class HomeComponent implements OnInit {
       answers: [],
     }
 
-    let playerID = this._player.addPlayer(player);
-    
-    
+    this._player.addPlayer(player)
+      .subscribe(playerID => {
+        if (localStorage.getItem('player')) localStorage.removeItem('player')
+        localStorage.setItem('player', playerID)
 
-    /* 
-    if (!localStorage.getItem('player')) {
-      
-      localStorage.setItem('player', player); 
-    }
+      }, error => console.error(error),
 
-    this._router.navigateByUrl('/choose');
-    */
+      () => this._router.navigateByUrl('/choose'));
   }
 }
