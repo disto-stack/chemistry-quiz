@@ -9,12 +9,16 @@
     @apply font-sourceCode
   }
 
+  .button-container {
+    @apply xl:w-3/5 my-0 mx-auto;
+  }
+
   .button {
     @apply rounded-xl text-center block w-full py-2 text-white font-bold;
   }
 
   .button-primary {
-    @apply button bg-palette-dark transition duration-200 ease-in-out hover:bg-palleteHover-dark;
+    @apply button bg-pallette-dark transition duration-200 ease-in-out hover:bg-palleteHover-dark;
   }
 }
 

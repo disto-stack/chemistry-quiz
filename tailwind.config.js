@@ -16,7 +16,7 @@ module.exports = {
             DEFAULT: '#34495e',
             dark: '#2c3e50'
           },
-          palette: {
+          pallette: {
             primary: '#2ecc71',
             dark: '#27ae60',
             error: '#e74c3c'

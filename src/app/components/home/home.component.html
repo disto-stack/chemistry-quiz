@@ -1,8 +1,7 @@
-<div class="logo md:w-tablet mx-auto">
-    <img class="w-full" src="../assets/logo.svg" alt="App Logo">
-</div>
-<section class="xl:flex xl:justify-center">
-  <form class="xl:flex xl:w-3/5" #userName="ngForm" (submit)="submitUser(userName.value.player)">
+<app-logo></app-logo>
+
+<section class="button-container">
+  <form class="xl:flex xl:justify-self-center" #userName="ngForm" (submit)="submitUser(userName.value.player)">
     <label class="xl:w-9/12" for="player">
       <span class="block text-white mb-1">Nombre de jugador</span>
       <input class="input" type="text" name="player" id="player" placeholder="Escribe el nombre..." required ngModel #player="ngModel">
