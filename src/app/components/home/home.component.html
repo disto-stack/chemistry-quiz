@@ -7,6 +7,6 @@
       <span class="block text-white mb-1">Nombre de jugador</span>
       <input class="input" type="text" name="player" id="player" placeholder="Escribe el nombre..." required ngModel #player="ngModel">
     </label>
-    <button class="button-primary disabled:opacity-80 xl:self-end xl:py-3 xl:w-3/12 xl:ml-2" [disabled]="player.invalid">A Jugar!</button>
+    <button class="button-primary" [disabled]="player.invalid">A Jugar!</button>
   </form>
 </section>
