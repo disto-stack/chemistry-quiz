@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore'
-import { Player } from '../types/player';
+import { Player } from '../../types/player';
 import { from, Observable } from 'rxjs';
 import { map } from "rxjs/operators";
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PlayerService {
   private playersDocs: AngularFirestoreCollection<Player>;
 
