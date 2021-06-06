@@ -26,9 +26,8 @@ export class HomeComponent implements OnInit {
       .subscribe(playerID => {
         if (localStorage.getItem('player')) localStorage.removeItem('player')
         localStorage.setItem('player', playerID)
-
-      }, error => console.error(error),
-
+      }, 
+      error => console.error(error),
       () => this._router.navigateByUrl('/choose'));
   }
 }

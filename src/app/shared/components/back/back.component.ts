@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'back-button',
-  templateUrl: './back.component.html',
-  styleUrls: ['./back.component.css']
+  templateUrl: './back.component.html'
 })
 export class BackComponent {
   @Input() toRoute: string;
