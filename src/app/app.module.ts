@@ -7,6 +7,7 @@ import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
+import { PagesRoutingModule } from './pages/pages.routing.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    PagesRoutingModule,
     PagesModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
