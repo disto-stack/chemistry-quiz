@@ -1,1 +1,8 @@
-<p>questions works!</p>
+<ul *ngFor="let question of questions">
+    <li>{{ question.question }}</li>
+    <li>
+        <ul *ngFor="let option of (question.options | keyvalue)">
+            <li>{{ option | json }}</li>
+        </ul>
+    </li>
+</ul>

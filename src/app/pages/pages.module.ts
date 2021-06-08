@@ -8,6 +8,7 @@ import { PlayerService } from './providers/player.service';
 
 import { ChooseComponent } from './components/choose/choose.component';
 import { HomeComponent } from './components/home/home.component';
+import { PagesRoutingModule } from './pages.routing.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { HomeComponent } from './components/home/home.component';
     CommonModule,
     SharedModule,
     FormsModule,
+    PagesRoutingModule,
     QuestionsModule
   ],
   exports: [

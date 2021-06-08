@@ -8,7 +8,7 @@ import { QuestionComponent } from './components/question/question.component';
 const routes: Routes = [
   { path: 'questions', 
     children: [
-      { path: '', component: QuestionsComponent },
+      { path: ':level', component: QuestionsComponent },
       { path: ':id', component: QuestionComponent }
     ] 
   }

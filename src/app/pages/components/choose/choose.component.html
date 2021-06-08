@@ -4,7 +4,7 @@
 
 <section class="button-container flex flex-col gap-5">
     <h1 class="mx-auto font-black text-pallette-dark text-xl xl:text-2xl">Escoge la dificultad</h1>
-    <a class="button-primary" role="button">Fácil</a>
-    <a class="button-primary" role="button">Medio</a>
-    <a class="button-primary" role="button">Difícil</a>
+    <a class="button-primary" role="button" [routerLink]="['/questions', 'easy']">Fácil</a>
+    <a class="button-primary" role="button" [routerLink]="['/questions', 'medium']">Medio</a>
+    <a class="button-primary" role="button" [routerLink]="['/questions', 'hard']">Difícil</a>
 </section>
