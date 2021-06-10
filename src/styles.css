@@ -9,7 +9,7 @@
     @apply font-sourceCode
   }
 
-  .button-container {
+  .section-container {
     @apply xl:w-3/5 my-0 mx-auto;
   }
 
@@ -19,6 +19,10 @@
 
   .button-primary {
     @apply button bg-pallette-dark transition duration-200 ease-in-out hover:bg-palleteHover-dark;
+  }
+
+  .button-secondary {
+    @apply button text-pallette-dark transition duration-200 ease-in-out border-2 border-pallette-dark hover:border-palleteHover-dark hover:text-palleteHover-dark;
   }
 }
 
