@@ -7,6 +7,7 @@ import { QuestionsService } from './providers/questions.service';
 import { QuestionsComponent } from './questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsRoutingModule } from './questions.routing.module';
+import { TimerService } from './providers/timer.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { QuestionsRoutingModule } from './questions.routing.module';
     QuestionComponent
   ],
   providers: [
-    QuestionsService
+    QuestionsService,
+    TimerService
   ],
   imports: [
     CommonModule,
