@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="question">
     <section class="section-container question">
         
         <app-timer [time]="time | timer" class="my-0 mx-auto"></app-timer>
@@ -6,14 +6,17 @@
         <app-number class="my-0 mx-auto"></app-number>
         
         <p class="text-center text-white">
-            El producto se define como el resultado de la multiplicación de dos valores. Según lo anterior, ¿Cual es el producto de 2x2?
+            {{ question.question }}
         </p>
     </section>
 
     <section class="mt-6 flex flex-col gap-3 section-container">
-        <button class="button-secondary focus:outline-none">A. 4</button>
-        <button class="button-secondary focus:outline-none">B. 537</button>
-        <button class="button-secondary focus:outline-none">C. 786</button>
-        <button class="button-secondary focus:outline-none">D. 0</button>
+        <button *ngFor="let option of question.options | keyvalue" 
+            [value]="option.key" class="button-secondary focus:outline-none">
+
+            {{ option.key | shortOption }}. {{ option.value['answer'] }}
+        
+        </button>
+        
     </section>
 </div>

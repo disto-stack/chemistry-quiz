@@ -25,4 +25,8 @@ export class QuestionsService {
         })
       )
   }
+
+  getQuestionById(Id: string): Observable<Question> {
+    return this.questionsDocs.doc(Id).get().pipe(map(res => res.data()))
+  }
 }

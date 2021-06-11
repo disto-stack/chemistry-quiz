@@ -14,18 +14,19 @@ import { Question } from 'src/app/types/question';
   styleUrls: ['./questions.component.css']
 })
 export class QuestionsComponent implements OnInit {
-  private $subscriptions: Subscription;
+  private subscriptions: Subscription;
   private level: string;
   
   questions: Question[];
+  actualQuestionId: string;
 
   constructor(
     private _questions: QuestionsService,
     private _timer: TimerService,
     private _route: ActivatedRoute
   ) { 
-    this.$subscriptions = new Subscription();
-    this.$subscriptions.add(this._route.params.subscribe(params => this.level = params['level']))    
+    this.subscriptions = new Subscription();
+    this.subscriptions.add(this._route.params.subscribe(params => this.level = params['level']))    
   }
 
   ngOnInit(): void {
@@ -34,20 +35,16 @@ export class QuestionsComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.$subscriptions.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   private getQuestionsByLevel(): void {
-    let $sub = this._questions.getQuestionsByLevel(this.level)
+    let sub = this._questions.getQuestionsByLevel(this.level)
       .subscribe(
         data => this.questions = data,
         error => console.error(error)
       )
     
-    this.$subscriptions.add($sub)
-  }
-
-  get actualTime(): number {
-    return this._timer.actualTime;
+    this.subscriptions.add(sub)
   }
 }
