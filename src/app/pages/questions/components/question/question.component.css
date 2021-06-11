@@ -1,3 +1,11 @@
 .question {
     @apply bg-background-dark flex flex-col justify-center gap-3 p-5 md:px-10 xl:gap-5 xl:py-10 xl:px-32 rounded-xl shadow-lg;
 }
+
+.correct {
+    @apply bg-pallette-primary border-pallette-primary text-white disabled:cursor-default;
+}
+
+.wrong {
+    @apply bg-pallette-error border-pallette-error text-white disabled:cursor-default;
+}

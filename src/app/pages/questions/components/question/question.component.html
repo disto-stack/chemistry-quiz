@@ -1,22 +1,23 @@
 <div *ngIf="question">
     <section class="section-container question">
-        
+
         <app-timer [time]="time | timer" class="my-0 mx-auto"></app-timer>
 
         <app-number class="my-0 mx-auto"></app-number>
-        
+
         <p class="text-center text-white">
             {{ question.question }}
         </p>
     </section>
 
     <section class="mt-6 flex flex-col gap-3 section-container">
-        <button *ngFor="let option of question.options | keyvalue" 
-            [value]="option.key" class="button-secondary focus:outline-none">
+
+        <button #buttonRef *ngFor="let option of question.options | keyvalue" [value]="option.key"
+            (click)="verifyOption(buttonRef)" class="button-secondary focus:outline-none" [disabled]="isAnswered">
 
             {{ option.key | shortOption }}. {{ option.value['answer'] }}
-        
+
         </button>
-        
+
     </section>
 </div>

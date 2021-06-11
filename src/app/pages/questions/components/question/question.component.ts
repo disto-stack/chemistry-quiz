@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -18,10 +18,13 @@ export class QuestionComponent implements OnInit, OnDestroy {
   @Input() questionId: string;
   time: number = 0;
   question: Question;
+ 
+  isAnswered: boolean = false;
 
   constructor(
     private _timer: TimerService,
-    private _questions: QuestionsService
+    private _questions: QuestionsService, 
+    private renderer2: Renderer2
   ) {
     this.subscription = this._questions.getQuestionById('3lEYb68k9BtYY8FkeZOE')
       .subscribe(data => {
@@ -37,8 +40,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  get optionKey() {
-    return 3;
+  verifyOption(optionButton: HTMLButtonElement): void {
+    if (!this.isAnswered) {
+      const isCorrect = optionButton.value === this.question.correctOption;
+      this.renderer2.addClass(optionButton, isCorrect ? 'correct' : 'wrong');
+      this.isAnswered = true;
+    }
   }
 
   private timer() {
