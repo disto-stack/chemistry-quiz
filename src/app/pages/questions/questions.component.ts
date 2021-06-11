@@ -31,9 +31,6 @@ export class QuestionsComponent implements OnInit {
   ngOnInit(): void {
     this.getQuestionsByLevel();
     this._timer.startCount();
-    setInterval(() => {
-      console.log(this._timer.actualTime);
-    }, 1000)
   }
 
   ngOnDestroy(): void {
@@ -48,5 +45,9 @@ export class QuestionsComponent implements OnInit {
       )
     
     this.$subscriptions.add($sub)
+  }
+
+  get actualTime(): number {
+    return this._timer.actualTime;
   }
 }

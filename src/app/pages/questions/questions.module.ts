@@ -8,11 +8,13 @@ import { QuestionsComponent } from './questions.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QuestionsRoutingModule } from './questions.routing.module';
 import { TimerService } from './providers/timer.service';
+import { TimerPipe } from './pipes/timer.pipe';
 
 @NgModule({
   declarations: [
     QuestionsComponent,
-    QuestionComponent
+    QuestionComponent,
+    TimerPipe
   ],
   providers: [
     QuestionsService,
