@@ -3,7 +3,8 @@
 
         <app-timer [time]="time | timer" class="my-0 mx-auto"></app-timer>
 
-        <app-number class="my-0 mx-auto"></app-number>
+        <app-number [firstNumber]="questionNumber" [lastNumber]="questionsLength" class="my-0 mx-auto">   
+        </app-number>
 
         <p class="text-center text-white">
             {{ question.question }}

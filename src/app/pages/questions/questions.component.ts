@@ -19,6 +19,8 @@ export class QuestionsComponent implements OnInit {
   
   questions: Question[];
   actualQuestionId: string;
+  actualIndex: number = 0;
+  questionsLength: number;
 
   constructor(
     private _questions: QuestionsService,
@@ -41,10 +43,19 @@ export class QuestionsComponent implements OnInit {
   private getQuestionsByLevel(): void {
     let sub = this._questions.getQuestionsByLevel(this.level)
       .subscribe(
-        data => this.questions = data,
+        data => {
+          this.questions = data;
+          this.questionsLength = this.questions.length;
+          this.getActualQuestionId();
+        },
         error => console.error(error)
       )
     
     this.subscriptions.add(sub)
+  }
+
+  private getActualQuestionId() {
+    this.actualIndex += 1;
+    this.actualQuestionId = this.questions.shift().id;
   }
 }

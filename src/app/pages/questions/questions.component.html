@@ -1,1 +1,5 @@
-<app-question></app-question>
+<div *ngIf="actualQuestionId">
+    <app-question [questionId]="actualQuestionId" [questionNumber]="actualIndex" [questionsLength]="questionsLength">
+
+    </app-question>
+</div>

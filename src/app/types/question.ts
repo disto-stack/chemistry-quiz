@@ -1,4 +1,5 @@
 export type Question = {
+    id?: string,
     question: string,
     level: string,
     options: Option[],

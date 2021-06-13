@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterContentInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -16,8 +16,13 @@ export class QuestionComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   @Input() questionId: string;
+  @Input() questionNumber: number;
+  @Input() questionsLength: number;
+  
   time: number = 0;
   question: Question;
+
+
  
   isAnswered: boolean = false;
 
@@ -25,14 +30,10 @@ export class QuestionComponent implements OnInit, OnDestroy {
     private _timer: TimerService,
     private _questions: QuestionsService, 
     private renderer2: Renderer2
-  ) {
-    this.subscription = this._questions.getQuestionById('3lEYb68k9BtYY8FkeZOE')
-      .subscribe(data => {
-        this.question = data;
-      });
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.loadQuestion();
     this.timer();
   }
 
@@ -52,5 +53,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     setInterval(() => {
       this.time = this._timer.actualTime;
     }, 1000)
+  }
+
+  private loadQuestion() {
+    this.subscription = this._questions.getQuestionById(this.questionId)
+      .subscribe(data => {
+        this.question = data;
+      });
   }
 }

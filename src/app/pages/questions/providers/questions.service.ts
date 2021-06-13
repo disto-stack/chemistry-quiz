@@ -19,7 +19,9 @@ export class QuestionsService {
       .pipe(
         map(res => {
           let questions: Question[] = [];
-          res.forEach(doc => questions.push(doc.data()))
+          res.forEach(doc => {
+            questions.push({id: doc.id, ...doc.data()})
+          })
 
           return questions;
         })
