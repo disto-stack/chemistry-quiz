@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from './providers/questions.service';
 import { TimerService } from './providers/timer.service';
 
@@ -25,7 +25,8 @@ export class QuestionsComponent implements OnInit {
   constructor(
     private _questions: QuestionsService,
     private _timer: TimerService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _router: Router
   ) { 
     this.subscriptions = new Subscription();
     this.subscriptions.add(this._route.params.subscribe(params => this.level = params['level']))    
@@ -46,7 +47,7 @@ export class QuestionsComponent implements OnInit {
         data => {
           this.questions = data;
           this.questionsLength = this.questions.length;
-          this.getActualQuestionId();
+          this.getActualQuestionId(); // Get first question
         },
         error => console.error(error)
       )
@@ -54,8 +55,12 @@ export class QuestionsComponent implements OnInit {
     this.subscriptions.add(sub)
   }
 
-  private getActualQuestionId() {
-    this.actualIndex += 1;
-    this.actualQuestionId = this.questions.shift().id;
-  }
+  getActualQuestionId() {
+    if (this.questions.length === 0) {
+      this._router.navigateByUrl('/');
+    } else {
+      this.actualQuestionId = this.questions.shift().id;
+      this.actualIndex += 1;
+    }
+  } 
 }

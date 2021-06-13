@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, DoCheck, Input, OnChanges, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output, Renderer2, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -12,25 +12,30 @@ import { TimerService } from '../../providers/timer.service';
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
-export class QuestionComponent implements OnInit, OnDestroy {
+export class QuestionComponent implements OnInit, OnDestroy, OnChanges {
   private subscription: Subscription;
 
   @Input() questionId: string;
   @Input() questionNumber: number;
   @Input() questionsLength: number;
-  
+
+  @Output() answeredEmitter = new EventEmitter<boolean>();
+
   time: number = 0;
   question: Question;
-
-
  
-  isAnswered: boolean = false;
+  isAnswered: boolean = false; // Used for button controle
 
   constructor(
     private _timer: TimerService,
     private _questions: QuestionsService, 
     private renderer2: Renderer2
   ) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.isAnswered = false;
+    this.loadQuestion();
+  }
 
   ngOnInit(): void {
     this.loadQuestion();
@@ -41,11 +46,12 @@ export class QuestionComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  verifyOption(optionButton: HTMLButtonElement): void {
+  answer(optionButton: HTMLButtonElement): void {
     if (!this.isAnswered) {
       const isCorrect = optionButton.value === this.question.correctOption;
       this.renderer2.addClass(optionButton, isCorrect ? 'correct' : 'wrong');
       this.isAnswered = true;
+      this.answeredEmitter.emit(true);
     }
   }
 
