@@ -4,9 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from './providers/questions.service';
 import { TimerService } from './providers/timer.service';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { Question } from 'src/app/types/question';
+import { AnswersService } from '../providers/answers.service';
+import { Answer } from 'src/app/types/answer';
+import { DocumentReference } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-questions',
@@ -26,7 +29,8 @@ export class QuestionsComponent implements OnInit {
     private _questions: QuestionsService,
     private _timer: TimerService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _answers: AnswersService
   ) { 
     this.subscriptions = new Subscription();
     this.subscriptions.add(this._route.params.subscribe(params => this.level = params['level']))    
@@ -55,9 +59,21 @@ export class QuestionsComponent implements OnInit {
     this.subscriptions.add(sub)
   }
 
+  private saveAnswers() {
+    if (localStorage.getItem('answers') && localStorage.getItem('player')) {
+      return this._answers.saveAnswers();
+    }
+  }
+
+  /**
+   * This method get the first element of question array from firestore
+   * and save the answers if the array length is 0. If the answers is saved,
+   * the app is redirected to result component.
+   */
   getActualQuestionId() {
     if (this.questions.length === 0) {
-      this._router.navigateByUrl('/');
+      const sub = this.saveAnswers().subscribe(success => this._router.navigateByUrl('/'), error => console.error(error));
+      this.subscriptions.add(sub);
     } else {
       this.actualQuestionId = this.questions.shift().id;
       this.actualIndex += 1;

@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit {
   submitUser(playerName: string): void {
     let player: Player = {
       name: playerName,
-      answers: [],
     }
 
     this._player.addPlayer(player)

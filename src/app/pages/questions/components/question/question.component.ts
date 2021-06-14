@@ -3,6 +3,7 @@ import { Component, Input, OnDestroy, OnInit, Output, Renderer2, EventEmitter, S
 import { Subscription } from 'rxjs';
 
 import { Question } from 'src/app/types/question';
+import { Answer } from 'src/app/types/answer';
 
 import { QuestionsService } from '../../providers/questions.service';
 import { TimerService } from '../../providers/timer.service';
@@ -23,17 +24,18 @@ export class QuestionComponent implements OnInit, OnDestroy, OnChanges {
 
   time: number = 0;
   question: Question;
- 
-  isAnswered: boolean = false; // Used for button controle
+
+  isAnswered: boolean = false; // Used for button disabled controle
+
+  private isCorrect: boolean;
 
   constructor(
     private _timer: TimerService,
-    private _questions: QuestionsService, 
+    private _questions: QuestionsService,
     private renderer2: Renderer2
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.isAnswered = false;
     this.loadQuestion();
   }
 
@@ -48,10 +50,11 @@ export class QuestionComponent implements OnInit, OnDestroy, OnChanges {
 
   answer(optionButton: HTMLButtonElement): void {
     if (!this.isAnswered) {
-      const isCorrect = optionButton.value === this.question.correctOption;
-      this.renderer2.addClass(optionButton, isCorrect ? 'correct' : 'wrong');
+      this.isCorrect = optionButton.value === this.question.correctOption;
+      this.renderer2.addClass(optionButton, this.isCorrect ? 'correct' : 'wrong');
       this.isAnswered = true;
-      this.answeredEmitter.emit(true);
+
+      this.saveAnswer(optionButton.value);
     }
   }
 
@@ -61,10 +64,31 @@ export class QuestionComponent implements OnInit, OnDestroy, OnChanges {
     }, 1000)
   }
 
+  /**
+   * Load and reset question data from questionId Input 
+   */
   private loadQuestion() {
+    this.isAnswered = false;
+
     this.subscription = this._questions.getQuestionById(this.questionId)
       .subscribe(data => {
         this.question = data;
       });
+  }
+
+  private saveAnswer(selectedOption: string) {
+    setTimeout(() => {
+      let answersArray: Answer[] = localStorage.getItem('answers') ? JSON.parse(localStorage.getItem('answers')) : [];
+      
+      answersArray.push({
+        number: this.questionNumber,
+        questionId: this.questionId,
+        selectedOption,
+        isCorrect: this.isCorrect
+      });
+
+      localStorage.setItem('answers', JSON.stringify(answersArray));
+      this.answeredEmitter.emit(true);
+    }, 1000);
   }
 }
