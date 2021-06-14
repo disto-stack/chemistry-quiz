@@ -4,12 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionsService } from './providers/questions.service';
 import { TimerService } from './providers/timer.service';
 
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 import { Question } from 'src/app/types/question';
 import { AnswersService } from '../providers/answers.service';
-import { Answer } from 'src/app/types/answer';
-import { DocumentReference } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-questions',
@@ -61,8 +59,18 @@ export class QuestionsComponent implements OnInit {
 
   private saveAnswers() {
     if (localStorage.getItem('answers') && localStorage.getItem('player')) {
-      return this._answers.saveAnswers();
+      const time = this.stopAndGetTime();
+
+      return this._answers.saveAnswers(time);
     }
+  }
+
+  private stopAndGetTime(): number {  
+    this._timer.stopCount();
+    const time = this._timer.actualTime;
+    this._timer.resetCount();
+
+    return time;
   }
 
   /**
@@ -72,7 +80,7 @@ export class QuestionsComponent implements OnInit {
    */
   getActualQuestionId() {
     if (this.questions.length === 0) {
-      const sub = this.saveAnswers().subscribe(success => this._router.navigateByUrl('/'), error => console.error(error));
+      const sub = this.saveAnswers().subscribe((res) => this._router.navigateByUrl('/'), error => console.error(error));
       this.subscriptions.add(sub);
     } else {
       this.actualQuestionId = this.questions.shift().id;

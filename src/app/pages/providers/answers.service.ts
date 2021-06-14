@@ -1,24 +1,32 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from '@angular/fire/firestore';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
+
 import { Answer } from 'src/app/types/answer';
+
+import { PlayerService } from './player.service';
 
 @Injectable()
 export class AnswersService {
-  private answersDocs: AngularFirestoreCollection<any>;
-
   constructor(
-    private _afs: AngularFirestore
-    
-  ) {
-    this.answersDocs = this._afs.collection<any>('answers');
-    this.answersDocs.valueChanges();
-  }
+    private _player: PlayerService    
+  ) { }
 
-  saveAnswers() {
-    const player = localStorage.getItem('player');
+  saveAnswers(time: number): Observable<void> {
+    const playerId = localStorage.getItem('player');
     const answers: Answer[] = JSON.parse(localStorage.getItem('answers'));
 
-    return from(this.answersDocs.add({ answers }))
+    const playerData = {
+      answers,
+      time,
+      isCompleted: true
+    };
+
+    this.deleteAnswersFromLocalStorage();
+    
+    return from(this._player.updatePlayer(playerId, playerData));
+  }
+
+  private deleteAnswersFromLocalStorage(): void {
+    localStorage.removeItem('answers');
   }
 }
