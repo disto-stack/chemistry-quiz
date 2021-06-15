@@ -9,6 +9,8 @@ import { PlayerService } from './providers/player.service';
 import { ChooseComponent } from './components/choose/choose.component';
 import { HomeComponent } from './components/home/home.component';
 import { PagesRoutingModule } from './pages.routing.module';
+import { ScoreService } from './providers/score.service';
+import { AnswersService } from './providers/answers.service';
 
 
 @NgModule({
@@ -27,6 +29,10 @@ import { PagesRoutingModule } from './pages.routing.module';
     ChooseComponent,
     HomeComponent
   ],
-  providers: [PlayerService]
+  providers: [
+    PlayerService,
+    AnswersService,
+    ScoreService
+  ]
 })
 export class PagesModule { }

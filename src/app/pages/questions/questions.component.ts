@@ -61,7 +61,7 @@ export class QuestionsComponent implements OnInit {
     if (localStorage.getItem('answers') && localStorage.getItem('player')) {
       const time = this.stopAndGetTime();
 
-      return this._answers.saveAnswers(time);
+      return this._answers.saveAnswers(time, this.level);
     }
   }
 
