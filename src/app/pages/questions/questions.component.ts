@@ -80,7 +80,7 @@ export class QuestionsComponent implements OnInit {
    */
   getActualQuestionId() {
     if (this.questions.length === 0) {
-      const sub = this.saveAnswers().subscribe((res) => this._router.navigateByUrl('/'), error => console.error(error));
+      const sub = this.saveAnswers().subscribe(() => this._router.navigateByUrl('score'), error => console.error(error));
       this.subscriptions.add(sub);
     } else {
       this.actualQuestionId = this.questions.shift().id;

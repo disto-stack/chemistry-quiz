@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalstorageService } from 'src/app/providers/localstorage.service';
 import { Player } from 'src/app/types/player';
 import { PlayerService } from '../../providers/player.service';
 
@@ -11,7 +12,8 @@ import { PlayerService } from '../../providers/player.service';
 export class HomeComponent implements OnInit {
   constructor(
     private _router: Router,
-    private _player: PlayerService
+    private _player: PlayerService,
+    private _localstorage: LocalstorageService
   ) { }
 
   ngOnInit(): void {}
@@ -23,9 +25,9 @@ export class HomeComponent implements OnInit {
     }
 
     this._player.addPlayer(player)
-      .subscribe(playerID => {
-        if (localStorage.getItem('player')) localStorage.removeItem('player')
-        localStorage.setItem('player', playerID)
+      .subscribe(playerId => {
+        this._localstorage.deletePlayer();
+        this._localstorage.addPlayerId(playerId)
       }, 
       error => console.error(error),
       () => this._router.navigateByUrl('/choose'));

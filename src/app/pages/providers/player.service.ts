@@ -26,8 +26,4 @@ export class PlayerService {
   updatePlayer(playerId: string, playerObject: { answers: Answer[], time?: number, score?: number, isCompleted: boolean }): Observable<void> {
     return from(this.playersDocs.doc(playerId).update(playerObject))
   }
-
-  getLocalPlayer(): string {
-    return localStorage.getItem('player');
-  }
 }

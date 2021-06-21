@@ -7,6 +7,7 @@ import { Answer } from 'src/app/types/answer';
 
 import { QuestionsService } from '../../providers/questions.service';
 import { TimerService } from '../../providers/timer.service';
+import { LocalstorageService } from 'src/app/providers/localstorage.service';
 
 @Component({
   selector: 'app-question',
@@ -32,6 +33,7 @@ export class QuestionComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private _timer: TimerService,
     private _questions: QuestionsService,
+    private _localstorage: LocalstorageService,
     private renderer2: Renderer2
   ) { }
 
@@ -78,7 +80,7 @@ export class QuestionComponent implements OnInit, OnDestroy, OnChanges {
 
   private saveAnswer(selectedOption: string) {
     setTimeout(() => {
-      let answersArray: Answer[] = localStorage.getItem('answers') ? JSON.parse(localStorage.getItem('answers')) : [];
+      let answersArray: Answer[] = this._localstorage.answers;
       
       answersArray.push({
         number: this.questionNumber,
@@ -87,7 +89,7 @@ export class QuestionComponent implements OnInit, OnDestroy, OnChanges {
         isCorrect: this.isCorrect
       });
 
-      localStorage.setItem('answers', JSON.stringify(answersArray));
+      this._localstorage.addAnswers(answersArray)
       this.answeredEmitter.emit(true);
     }, 1000);
   }

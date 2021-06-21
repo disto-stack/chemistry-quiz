@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { Answer } from 'src/app/types/answer';
 import { Player } from "src/app/types/player";
 
@@ -25,15 +27,15 @@ export class ScoreService {
   }
 
   /**
-   * Get player score from database
+   * Get player score and time from database
    * @param playerId The player Id saved in localstorage
-   * @returns Observable with playerScore
+   * @returns Observable with playerScore and playerTime
    */
-  getScore(playerId: string) {
+  getScoreAndTime(playerId: string): Observable<{score: number, time: number}> {
     return this.playersDocs.doc(playerId).get()
       .pipe(
         map(data => data.data()),
-        map(data => data['score']),
+        map(data => ({ score: data['score'], time: data['time'] })),
       )
   }
 

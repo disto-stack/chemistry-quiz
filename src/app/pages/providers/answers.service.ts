@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
+import { LocalstorageService } from 'src/app/providers/localstorage.service';
 
 import { Answer } from 'src/app/types/answer';
 
@@ -10,12 +11,13 @@ import { ScoreService } from './score.service';
 export class AnswersService {
   constructor(
     private _player: PlayerService,
-    private _score: ScoreService    
+    private _score: ScoreService,
+    private _localstorage: LocalstorageService  
   ) { }
 
   saveAnswers(time: number, level: string): Observable<void> {
-    const playerId = localStorage.getItem('player');
-    const answers: Answer[] = JSON.parse(localStorage.getItem('answers'));
+    const playerId = this._localstorage.playerID;
+    const answers: Answer[] = this._localstorage.answers;
     const score = this._score.calculateScore(answers);
 
     const playerData = {
@@ -26,12 +28,10 @@ export class AnswersService {
       isCompleted: true
     };
 
-    this.deleteAnswersFromLocalStorage();
+    this._localstorage.deleteAnswers();
     
     return from(this._player.updatePlayer(playerId, playerData));
   }
 
-  private deleteAnswersFromLocalStorage(): void {
-    localStorage.removeItem('answers');
-  }
+
 }
