@@ -1,1 +1,14 @@
-<app-trophy position="bronze"></app-trophy>
+<div *ngIf="successRate && score">
+    <app-trophy position="bronze"></app-trophy>
+
+    <section class="">
+        <header>
+            <h2>{{ successRate }}% Acierto</h2>
+            <p>{{ score }}</p>
+        </header>
+
+        <body>
+
+        </body>
+    </section>
+</div>
