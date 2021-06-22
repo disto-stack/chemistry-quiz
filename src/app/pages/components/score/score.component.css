@@ -1,0 +1,7 @@
+.customPadding {
+    @apply py-4 md:py-8;
+}
+
+.link {
+    @apply block text-center text-pallette-dark underline font-bold cursor-pointer xl:text-lg;
+}

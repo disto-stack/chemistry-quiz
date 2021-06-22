@@ -1,14 +1,24 @@
 <div *ngIf="successRate && score && time">
     <app-trophy position="bronze"></app-trophy>
 
-    <section class="">
+    <section class="customPadding">
         <header>
-            <h2>{{ successRate }}% Acierto</h2>
-            <p>{{ score }}</p>
+            <h2 class="text-pallette-primary text-xl text-center font-black md:text-2xl xl:text-3xl">{{ successRate }}% Acierto</h2>
+            <p class="text-center text-white font-black md:text-lg xl:text-xl">{{ score }} pts</p>
         </header>
 
-        <body>
-
+        <body class="customPadding">
+            <p class="text-center text-white xl:text-lg xl:mx-52 2xl:mx-96">
+                Has respondido todas las preguntas, tu efectividad ha sido del {{ successRate}}%.
+                Todo esto lo completaste en un tiempo de {{ time | timeTransale }}
+            </p>
         </body>
+
+        <footer class="customPadding">
+            <a class="link">Ver resumen de las preguntas</a>
+            <a class="link">Ver ranking</a>
+            
+            <a class="link mt-4">Volver a intentar</a>
+        </footer>
     </section>
 </div>

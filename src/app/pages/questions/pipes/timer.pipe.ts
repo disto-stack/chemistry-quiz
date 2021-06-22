@@ -7,7 +7,7 @@ export class TimerPipe implements PipeTransform {
 
   transform(value: number): string {
     let minutes = Math.floor(value / 60);
-    let seconds = value - (minutes *60);
+    let seconds = value - (minutes * 60);
 
     return `${this.transformDigits(minutes)}:${this.transformDigits(seconds)}`;
   }

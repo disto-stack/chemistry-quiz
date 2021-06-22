@@ -13,12 +13,15 @@ import { HomeComponent } from './components/home/home.component';
 import { ChooseComponent } from './components/choose/choose.component';
 import { ScoreComponent } from './components/score/score.component';
 
+import { TimeTransalePipe } from "./pipes/time.transale.pipe";
+
 
 @NgModule({
   declarations: [
     ChooseComponent,
     HomeComponent,
-    ScoreComponent
+    ScoreComponent,
+    TimeTransalePipe
   ],
   imports: [
     CommonModule,
