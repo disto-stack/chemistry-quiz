@@ -1,29 +1,50 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, pipe, Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 import { Answer } from 'src/app/types/answer';
 import { Player } from "src/app/types/player";
+
+import { PlayerService } from './player.service';
 
 @Injectable()
 export class ScoreService {
   private playersDocs: AngularFirestoreCollection<Player>
 
+  private subscription: Subscription;
+
   constructor(
-    private _afs: AngularFirestore
+    private _afs: AngularFirestore,
+    private _player: PlayerService
   ) {
     this.playersDocs = this._afs.collection<Player>('players');
+  }
+
+  /**
+   * Method that get the index on ordened by score array
+   * @param playerId player to get the index
+   * @returns a observable with the number of index
+   */
+  getPosition(playerId: string): Observable<number> {
+    return this._player.getSortedPlayers()
+      .pipe(
+        map(players => {
+          return players.map((player, index) => ({ id: player['playerId'], position: (index + 1) }));
+        }),
+        map(players => {
+          return players.filter(player => player.id === playerId)[0].position;
+        })
+      )   
   }
 
   /**
    * Score calculation: 100 points by correct option
    */
   calculateScore(answers: Answer[]): number {
-    return answers.filter(answer => answer.isCorrect)
-      .map(() => 100)
-      .reduce((totalScore, current) => totalScore += current);
+    const answersFilter = answers.filter(answer => answer.isCorrect).map(() => 100)
+    return (answersFilter.length > 0) ? answersFilter.reduce((totalScore, current) => totalScore += current) : 0;
   }
 
   /**

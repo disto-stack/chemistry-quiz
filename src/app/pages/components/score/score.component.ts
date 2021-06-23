@@ -12,6 +12,7 @@ import { ScoreService } from '../../providers/score.service';
 export class ScoreComponent implements OnInit {
   private subscriptions: Subscription;
 
+  position: string;
   successRate: number;
   score: number;
   time: number;
@@ -28,9 +29,19 @@ export class ScoreComponent implements OnInit {
     ]
 
     scoreSubscriptions.forEach(subs => this.subscriptions.add(subs))
-   }
+  }
 
   ngOnInit() {
-    
+    this._score.getPosition(this._localstorage.playerID).subscribe(position => this.position = this.positionPodium(position));
+  }
+
+  positionPodium(position: number): string {
+    const podium = {
+      1: 'gold',
+      2: 'silver',
+      3: 'bronze'
+    }
+
+    return podium[position] || 'default';
   }
 }

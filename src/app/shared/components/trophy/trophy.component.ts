@@ -3,7 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 @Component({
   selector: 'app-trophy',
   templateUrl: './trophy.component.html',
-  styles: ['']
+  styleUrls: ['./trophy.component.css']
 })
 export class TrophyComponent implements OnInit {
   @Input() position: string;

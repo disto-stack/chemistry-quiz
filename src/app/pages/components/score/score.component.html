@@ -1,5 +1,5 @@
-<div *ngIf="successRate && score && time">
-    <app-trophy position="bronze"></app-trophy>
+<div *ngIf="position">
+    <app-trophy position="{{ position }}"></app-trophy>
 
     <section class="customPadding">
         <header>

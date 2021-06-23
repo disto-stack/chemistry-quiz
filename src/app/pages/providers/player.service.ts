@@ -15,7 +15,6 @@ export class PlayerService {
     private _afs: AngularFirestore
   ) {
     this.playersDocs = this._afs.collection<Player>('players');
-    this.playersDocs.valueChanges();
    }
 
   addPlayer(player: Player): Observable<string> {
@@ -23,7 +22,32 @@ export class PlayerService {
             .pipe(map(res => res.id))
   }
 
+  getPlayers(): Observable<Player[]> {
+    return this.playersDocs.valueChanges({ idField: 'playerId' })
+  }
+
   updatePlayer(playerId: string, playerObject: { answers: Answer[], time?: number, score?: number, isCompleted: boolean }): Observable<void> {
     return from(this.playersDocs.doc(playerId).update(playerObject))
+  }
+
+  /**
+   * Method that get sorted players array.
+   * Sorted by score and time (if the score is tied)
+   * @returns sorted players array
+   */
+  getSortedPlayers(): Observable<Player[]> {
+    return this.getPlayers()
+      .pipe(
+        map(players => {          
+            players.sort((playerA, playerB): number => {
+            const comparison = playerB.score - playerA.score;
+            if (comparison === 0) return playerA.time - playerB.time;
+
+            return comparison;
+          });
+          
+          return players;
+        })
+      )
   }
 }
