@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { from, Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import { filter, map } from "rxjs/operators";
 
 import { Player } from 'src/app/types/player';
 import { Answer } from 'src/app/types/answer';
@@ -28,6 +28,25 @@ export class PlayerService {
 
   updatePlayer(playerId: string, playerObject: { answers: Answer[], time?: number, score?: number, isCompleted: boolean }): Observable<void> {
     return from(this.playersDocs.doc(playerId).update(playerObject))
+  }
+
+  getPlayer(playerId: string, ...playerFields: string[]) {
+    return this.playersDocs.doc(playerId).valueChanges()
+      .pipe(
+        map(player => {
+          if (playerFields.length > 0) {
+            const playerData = {};            
+
+            playerFields.forEach(field => {
+              if (player[field]) playerData[field] = player[field];
+            })
+
+            return playerData;
+          }
+
+          return player;
+        })
+      )
   }
 
   /**

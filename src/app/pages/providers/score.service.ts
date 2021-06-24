@@ -13,8 +13,6 @@ import { PlayerService } from './player.service';
 export class ScoreService {
   private playersDocs: AngularFirestoreCollection<Player>
 
-  private subscription: Subscription;
-
   constructor(
     private _afs: AngularFirestore,
     private _player: PlayerService
@@ -25,17 +23,15 @@ export class ScoreService {
   /**
    * Method that get the index on ordened by score array
    * @param playerId player to get the index
+   * @param level Level played
    * @returns a observable with the number of index
    */
   getPosition(playerId: string): Observable<number> {
+    this._player.getPlayer(playerId).subscribe(data => console.log(data))
     return this._player.getSortedPlayers()
       .pipe(
-        map(players => {
-          return players.map((player, index) => ({ id: player['playerId'], position: (index + 1) }));
-        }),
-        map(players => {
-          return players.filter(player => player.id === playerId)[0].position;
-        })
+        map(players => players.map((player, index) => ({ id: player['playerId'], position: (index + 1) }))),
+        map(players =>  players.filter(player => player.id === playerId)[0].position)
       )   
   }
 
@@ -48,15 +44,15 @@ export class ScoreService {
   }
 
   /**
-   * Get player score and time from database
+   * Get player score, time and level from database
    * @param playerId The player Id saved in localstorage
-   * @returns Observable with playerScore and playerTime
+   * @returns Observable with object that contains player score, time and level 
    */
-  getScoreAndTime(playerId: string): Observable<{score: number, time: number}> {
+  getScoreData(playerId: string): Observable<{score: number, time: number, level: string}> {
     return this.playersDocs.doc(playerId).get()
       .pipe(
         map(data => data.data()),
-        map(data => ({ score: data['score'], time: data['time'] })),
+        map(data => ({ score: data['score'], time: data['time'], level: data['level'] })),
       )
   }
 

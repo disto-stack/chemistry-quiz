@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
 import { PlayerService } from '../../providers/player.service';
@@ -9,13 +9,14 @@ import { ScoreService } from '../../providers/score.service';
   templateUrl: './score.component.html',
   styleUrls: ['./score.component.css']
 })
-export class ScoreComponent implements OnInit {
+export class ScoreComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription;
 
   position: string;
   successRate: number;
   score: number;
   time: number;
+  level: string;
 
   constructor(
     private _score: ScoreService,
@@ -25,7 +26,11 @@ export class ScoreComponent implements OnInit {
 
     const scoreSubscriptions = [
       this._score.getScoreHit(this._localstorage.playerID).subscribe(success => this.successRate = success, err => console.error(err)),
-      this._score.getScoreAndTime(this._localstorage.playerID).subscribe(scoreData => {this.score = scoreData.score, this.time = scoreData.time}, err => console.error(err))      
+      this._score.getScoreData(this._localstorage.playerID).subscribe(scoreData => { 
+        this.score = scoreData.score, 
+        this.time = scoreData.time, 
+        this.level = scoreData.level
+      }, err => console.error(err))
     ]
 
     scoreSubscriptions.forEach(subs => this.subscriptions.add(subs))
@@ -33,6 +38,10 @@ export class ScoreComponent implements OnInit {
 
   ngOnInit() {
     this._score.getPosition(this._localstorage.playerID).subscribe(position => this.position = this.positionPodium(position));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   positionPodium(position: number): string {
