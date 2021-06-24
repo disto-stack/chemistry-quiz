@@ -20,16 +20,17 @@ export class ScoreComponent implements OnInit, OnDestroy {
 
   constructor(
     private _score: ScoreService,
+    private _player: PlayerService,
     private _localstorage: LocalstorageService
   ) {
     this.subscriptions = new Subscription();
 
     const scoreSubscriptions = [
       this._score.getScoreHit(this._localstorage.playerID).subscribe(success => this.successRate = success, err => console.error(err)),
-      this._score.getScoreData(this._localstorage.playerID).subscribe(scoreData => { 
-        this.score = scoreData.score, 
-        this.time = scoreData.time, 
-        this.level = scoreData.level
+      this._player.getPlayer(this._localstorage.playerID, 'score', 'time', 'level').subscribe(({ score, time, level }) => {
+        this.score = score;
+        this.time = time;
+        this.level = level;
       }, err => console.error(err))
     ]
 
@@ -37,7 +38,9 @@ export class ScoreComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._score.getPosition(this._localstorage.playerID).subscribe(position => this.position = this.positionPodium(position));
+    this._score.getPosition(this._localstorage.playerID).subscribe(position => {
+      this.position = this.positionPodium(position);
+    });
   }
 
   ngOnDestroy(): void {

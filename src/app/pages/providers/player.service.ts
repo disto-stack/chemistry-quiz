@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 import { from, Observable } from 'rxjs';
-import { filter, map } from "rxjs/operators";
+import { map } from "rxjs/operators";
 
 import { Player } from 'src/app/types/player';
 import { Answer } from 'src/app/types/answer';
@@ -30,7 +30,7 @@ export class PlayerService {
     return from(this.playersDocs.doc(playerId).update(playerObject))
   }
 
-  getPlayer(playerId: string, ...playerFields: string[]) {
+  getPlayer(playerId: string, ...playerFields: string[]): Observable<Player> {
     return this.playersDocs.doc(playerId).valueChanges()
       .pipe(
         map(player => {
@@ -41,7 +41,7 @@ export class PlayerService {
               if (player[field]) playerData[field] = player[field];
             })
 
-            return playerData;
+            return playerData as Player;
           }
 
           return player;
