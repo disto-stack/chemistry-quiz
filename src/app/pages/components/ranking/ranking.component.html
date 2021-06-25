@@ -2,6 +2,6 @@
 
 <section *ngIf="players">
     <app-podium [players]="players"></app-podium>
-
-    <app-table class="mx-4"></app-table>
+    
+    <app-table [players]="players" class="mx-4"></app-table>
 </section>

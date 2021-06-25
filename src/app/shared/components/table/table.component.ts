@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Player } from 'src/app/types/player';
 
 @Component({
   selector: 'app-table',
@@ -6,12 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-
-  test = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @Input() players: Player[];
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  private get convertedPlayers() {
+    return this.players.map((player, index) => {
+      return {
+        position: index + 1,
+        name: player.name,
+        score: player.score
+      };
+    });
   }
 
+  get notPodiumPlayers() {
+    return this.convertedPlayers.filter((player => (player.position > 3)))
+  }    
 }
