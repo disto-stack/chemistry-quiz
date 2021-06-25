@@ -6,11 +6,12 @@ import { LogoComponent } from './components/logo/logo.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { NumberComponent } from './components/number/number.component';
 import { ErlenmeyerComponent } from './components/erlenmeyer/erlenmeyer.component';
-import { PositionClassPipe } from './pipes/position-class.pipe';
 import { TrophyComponent } from './components/trophy/trophy.component';
-import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
 import { PodiumComponent } from './components/podium/podium.component';
+import { TableComponent } from './components/table/table.component';
 
+import { PositionClassPipe } from './pipes/position-class.pipe';
+import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PodiumComponent } from './components/podium/podium.component';
     ErlenmeyerComponent,
     TrophyComponent,
     PodiumComponent,
+    TableComponent,
     PositionClassPipe,
     PositionSpanishPipe
   ],
@@ -34,7 +36,8 @@ import { PodiumComponent } from './components/podium/podium.component';
     NumberComponent,
     ErlenmeyerComponent,
     TrophyComponent,
-    PodiumComponent
+    PodiumComponent,
+    TableComponent
   ]
 })
 export class SharedModule { }
