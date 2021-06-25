@@ -35,6 +35,7 @@ export class RankingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+      
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,27 @@
+.podiumPosition {
+    @apply w-1/3 text-center flex flex-col justify-end;
+}
+
+.playerName {
+    @apply font-bold text-white my-1 md:text-xl lg:text-2xl;
+}
+
+.position {
+    @apply font-bold text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+}
+
+.podiumScore {
+    @apply w-full flex flex-col justify-center items-center;
+}
+
+.firstPlace {
+    @apply bg-pallette-dark;
+}
+
+.secondThirdPlace {
+    @apply border-2 border-pallette-dark bg-white;
+}
+
+.score {
+    @apply font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl;
+}

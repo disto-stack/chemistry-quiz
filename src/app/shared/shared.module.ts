@@ -9,6 +9,7 @@ import { ErlenmeyerComponent } from './components/erlenmeyer/erlenmeyer.componen
 import { PositionClassPipe } from './pipes/position-class.pipe';
 import { TrophyComponent } from './components/trophy/trophy.component';
 import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
+import { PodiumComponent } from './components/podium/podium.component';
 
 
 @NgModule({
@@ -19,8 +20,9 @@ import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
     NumberComponent,
     ErlenmeyerComponent,
     TrophyComponent,
+    PodiumComponent,
     PositionClassPipe,
-    PositionSpanishPipe,
+    PositionSpanishPipe
   ],
   imports: [
     CommonModule
@@ -31,7 +33,8 @@ import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
     TimerComponent,
     NumberComponent,
     ErlenmeyerComponent,
-    TrophyComponent
+    TrophyComponent,
+    PodiumComponent
   ]
 })
 export class SharedModule { }
