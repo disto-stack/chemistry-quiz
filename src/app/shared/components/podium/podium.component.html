@@ -1,29 +1,29 @@
-<div class="flex h-72 md:h-80 lg:h-96 xl:w-4/6 2xl:w-2/5 mx-auto">
-    <div class="podiumPosition">
+<div *ngIf="players" class="flex justify-center h-72 md:h-80 lg:h-96 xl:w-4/6 2xl:w-2/5 mx-auto">
+    <div *ngIf="secondPlace" class="podiumPosition">
         <app-erlenmeyer position="silver" widthClass="w-8 md:w-16 lg:w-20"></app-erlenmeyer>
-        <h2 class="playerName">Carlos</h2>
+        <h2 class="playerName">{{ secondPlace.name }}</h2>
 
         <div class="podiumScore secondThirdPlace h-1/2">
             <h3 class="position text-pallette-dark">2</h3>
-            <h4 class="score text-pallette-dark">457 pts</h4>
+            <h4 class="score text-pallette-dark">{{ secondPlace.score }} pts</h4>
         </div>
     </div>
-    <div class="podiumPosition">
+    <div *ngIf="firstPlace" class="podiumPosition">
         <app-erlenmeyer position="gold" widthClass="w-8 md:w-16 lg:w-20"></app-erlenmeyer>
-        <h2 class="playerName">Juan M</h2>
+        <h2 class="playerName">{{ firstPlace.name }}</h2>
 
         <div class="podiumScore firstPlace h-4/5">
             <h3 class="position text-white">1</h3>
-            <h4 class="score text-white">540 pts</h4>
+            <h4 class="score text-white">{{ firstPlace.score }} pts</h4>
         </div>
     </div>
-    <div class="podiumPosition">
+    <div *ngIf="thirdPlace" class="podiumPosition">
         <app-erlenmeyer position="bronze" widthClass="w-8 md:w-16 lg:w-20"></app-erlenmeyer>
-        <h2 class="playerName">Felipe</h2>
+        <h2 class="playerName">{{ thirdPlace.name }}</h2>
 
         <div class="podiumScore secondThirdPlace h-1/3">
             <h3 class="position text-pallette-dark">3</h3>
-            <h4 class="score text-pallette-dark">330 pts</h4>
+            <h4 class="score text-pallette-dark">{{ thirdPlace.score }} pts</h4>
         </div>
     </div>
 </div>

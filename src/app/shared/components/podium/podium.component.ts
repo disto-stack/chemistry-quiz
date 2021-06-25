@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Player } from 'src/app/types/player';
 
 @Component({
   selector: 'app-podium',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./podium.component.css']
 })
 export class PodiumComponent implements OnInit {
+  @Input() players: Player[];
 
-  constructor() { }
+  playerPodium: Player[];
+
+  constructor() {   
+  
+  }
 
   ngOnInit(): void {
   }
 
+  get firstPlace(): Player {
+    return this.players[0];
+  }
+
+  get secondPlace(): Player {
+    return this.players[1];
+  }
+
+  get thirdPlace(): Player {
+    return this.players[2];
+  }
 }
