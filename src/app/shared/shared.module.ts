@@ -12,6 +12,7 @@ import { TableComponent } from './components/table/table.component';
 
 import { PositionClassPipe } from './pipes/position-class.pipe';
 import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
+import { ZeroPositionPipe } from './pipes/zero-position.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
     PodiumComponent,
     TableComponent,
     PositionClassPipe,
-    PositionSpanishPipe
+    PositionSpanishPipe,
+    ZeroPositionPipe
   ],
   imports: [
     CommonModule

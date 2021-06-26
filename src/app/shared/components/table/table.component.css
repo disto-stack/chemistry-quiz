@@ -1,5 +1,5 @@
 .tableCelds {
-    @apply font-bold py-3 w-1/3;
+    @apply font-bold py-3 w-1/3 md:text-lg;
 }
 
 .tableRows:first-child .tableCelds:first-child {
