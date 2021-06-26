@@ -6,7 +6,9 @@ module.exports = {
       enabled: guessProductionMode(),
       content: [
         './src/**/*.{html,ts}',
-      ]
+        './safelist.txt'
+      ],
+      
     },
     darkMode: false, // or 'media' or 'class'
     theme: {
