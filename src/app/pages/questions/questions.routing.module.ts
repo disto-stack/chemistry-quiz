@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuestionsComponent } from './questions.component';
 
 const routes: Routes = [
-  { path: 'questions', 
+  { path: '', 
     children: [
       { path: ':level', component: QuestionsComponent }
     ] 

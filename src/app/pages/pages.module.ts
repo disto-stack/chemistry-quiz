@@ -14,6 +14,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ChooseComponent } from './components/choose/choose.component';
 import { ScoreComponent } from './components/score/score.component';
 import { RankingComponent } from './components/ranking/ranking.component';
+import { ReviewComponent } from './components/review/review.component';
 
 import { TimeTransalePipe } from "./pipes/time.transale.pipe";
 
@@ -23,19 +24,16 @@ import { TimeTransalePipe } from "./pipes/time.transale.pipe";
     HomeComponent,
     ScoreComponent,
     RankingComponent,
+    ReviewComponent,
     TimeTransalePipe
   ],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
-    PagesRoutingModule,
-    QuestionsModule
+    PagesRoutingModule
   ],
-  exports: [
-    ChooseComponent,
-    HomeComponent
-  ],
+  exports: [],
   providers: [
     PlayerService,
     AnswersService,
