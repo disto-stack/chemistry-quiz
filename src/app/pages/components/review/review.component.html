@@ -7,7 +7,7 @@
 
         <div class="w-full flex flex-col gap-2">
             <a class="cursor-pointer flex justify-around items-center px-2 lg:px-3" *ngFor="let answer of reviewData.answers"
-                [ngClass]="answer.isCorrect ? 'button-primary' : 'button-error'">
+                [ngClass]="answer.isCorrect ? 'button-primary' : 'button-error'" [routerLink]="['/review', answer.questionId]">
 
                 <span class="block flex-1">
                     Pregunta {{answer.number}}

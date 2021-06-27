@@ -7,6 +7,7 @@ import { ChooseComponent } from './components/choose/choose.component';
 import { ScoreComponent } from './components/score/score.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { ReviewComponent } from './components/review/review.component';
+import { ReviewQuestionComponent } from './components/review-question/review-question.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   },
   { path: 'score', component: ScoreComponent },
   { path: 'ranking/:level', component: RankingComponent },
-  { path: 'review', component: ReviewComponent }
+  { path: 'review', component: ReviewComponent },
+  { path: 'review/:questionId', component: ReviewQuestionComponent, pathMatch: 'full' }
 ]
 
 @NgModule({
