@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
 import { Answer } from 'src/app/types/answer';
-import { Question } from 'src/app/types/question';
+import { Option, Question } from 'src/app/types/question';
 import { ReviewService } from '../../providers/review.service';
 
 @Component({
@@ -41,6 +41,11 @@ export class ReviewQuestionComponent implements OnInit, OnDestroy {
 
     this.subscription.add(routeSub);
   }
+
+  getOption(selectedOption: string): string {
+    return this.questionData.options[selectedOption].answer;
+  }
+
 
   ngOnDestroy(): void {    
     this.subscription.unsubscribe();

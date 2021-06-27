@@ -7,6 +7,6 @@ export type Question = {
     explanation: string,
 }
 
-type Option = {
+export type Option = {
     [key: string]: { answer: string }
 }

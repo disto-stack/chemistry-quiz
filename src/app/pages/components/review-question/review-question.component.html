@@ -1,10 +1,22 @@
 <div *ngIf="answer">
     <back-button toRoute="/review"></back-button>
 
-    <section>
-        <section>
-            <p>{{ questionData.question }}</p>
-            <span>{{ questionData.correctOption | shortOption }}</span>
+    <section class="text-center mt-10 mx-auto xl:w-1/2">
+        <section class="bg-background-dark rounded-lg shadow-lg p-4">
+            <p class="text-white text-center text-sm mb-3 md:text-base">{{ questionData.question }}</p>
+
+            <div class="flex flex-col gap-3">
+                <span class="button-primary text-sm md:text-base">
+                    Repuesta correcta: {{ questionData.correctOption | shortOption }}. {{ getOption(questionData.correctOption) }} 
+                </span>
+                <span class="text-sm md:text-base" [ngClass]="answer.isCorrect ? 'button-primary' : 'button-error'">
+                    Repuesta elegida: {{ answer.selectedOption | shortOption }}. {{ getOption(answer.selectedOption) }}
+                </span>
+            </div>
+        </section>
+
+        <section class="mt-10">
+            <a class="text-pallette-dark font-black underline text-xl xl:text-2xl cursor-pointer">Ver explicación</a>
         </section>
     </section>
 </div>
