@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs';
 import { Question } from 'src/app/types/question';
 import { Answer } from 'src/app/types/answer';
 
-import { QuestionsService } from '../../providers/questions.service';
+import { QuestionsService } from '../../../providers/questions.service';
 import { TimerService } from '../../providers/timer.service';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
 
