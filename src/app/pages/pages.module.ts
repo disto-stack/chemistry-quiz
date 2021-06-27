@@ -19,6 +19,7 @@ import { ReviewComponent } from './components/review/review.component';
 import { ReviewQuestionComponent } from './components/review-question/review-question.component';
 
 import { TimeTransalePipe } from "./pipes/time.transale.pipe";
+import { ShortOptionPipe } from '../shared/pipes/short-option.pipe';
 
 @NgModule({
   declarations: [

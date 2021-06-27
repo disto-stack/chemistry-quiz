@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ShortOptionPipe implements PipeTransform {
 
-  transform(value: string): unknown {
+  transform(value: string): string {
     const option = value.replace(/option/g, '');    
     return option;
   }

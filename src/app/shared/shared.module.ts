@@ -13,6 +13,7 @@ import { TableComponent } from './components/table/table.component';
 import { PositionClassPipe } from './pipes/position-class.pipe';
 import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
 import { ZeroPositionPipe } from './pipes/zero-position.pipe';
+import { ShortOptionPipe } from './pipes/short-option.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ZeroPositionPipe } from './pipes/zero-position.pipe';
     TableComponent,
     PositionClassPipe,
     PositionSpanishPipe,
-    ZeroPositionPipe
+    ZeroPositionPipe,
+    ShortOptionPipe
   ],
   imports: [
     CommonModule
@@ -39,7 +41,8 @@ import { ZeroPositionPipe } from './pipes/zero-position.pipe';
     ErlenmeyerComponent,
     TrophyComponent,
     PodiumComponent,
-    TableComponent
+    TableComponent,
+    ShortOptionPipe
   ]
 })
 export class SharedModule { }
