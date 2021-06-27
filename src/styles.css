@@ -14,15 +14,19 @@
   }
 
   .button {
-    @apply rounded-xl text-center block w-full py-2 text-white font-bold;
+    @apply rounded-xl text-center block w-full py-2 text-white font-bold transition duration-200 ease-in-out;
   }
 
   .button-primary {
-    @apply button bg-pallette-dark transition duration-200 ease-in-out hover:bg-palleteHover-dark;
+    @apply button bg-pallette-dark  hover:bg-palleteHover-dark;
   }
 
   .button-secondary {
-    @apply button text-pallette-dark transition duration-200 ease-in-out border-2 border-pallette-dark hover:border-palleteHover-dark hover:text-palleteHover-dark;
+    @apply button text-pallette-dark border-2 border-pallette-dark hover:border-palleteHover-dark hover:text-palleteHover-dark;
+  }
+
+  .button-error {
+    @apply button bg-pallette-error hover:bg-palleteHover-error;
   }
 }
 

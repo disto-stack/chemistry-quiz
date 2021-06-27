@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
-import { QuestionsModule } from './questions/questions.module';
 import { PagesRoutingModule } from './pages.routing.module';
 
 import { PlayerService } from './providers/player.service';
 import { ScoreService } from './providers/score.service';
 import { AnswersService } from './providers/answers.service';
 import { RankingService } from './providers/ranking.service';
+import { ReviewService } from './providers/review.service';
 
 import { HomeComponent } from './components/home/home.component';
 import { ChooseComponent } from './components/choose/choose.component';
@@ -33,12 +33,12 @@ import { TimeTransalePipe } from "./pipes/time.transale.pipe";
     FormsModule,
     PagesRoutingModule
   ],
-  exports: [],
   providers: [
     PlayerService,
     AnswersService,
     ScoreService,
-    RankingService
+    RankingService,
+    ReviewService
   ]
 })
 export class PagesModule { }

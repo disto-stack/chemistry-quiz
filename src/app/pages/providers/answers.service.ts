@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
 
 import { Answer } from 'src/app/types/answer';
+import { Player } from 'src/app/types/player';
 
 import { PlayerService } from './player.service';
 import { ScoreService } from './score.service';
@@ -33,5 +35,14 @@ export class AnswersService {
     return from(this._player.updatePlayer(playerId, playerData));
   }
 
-
+  /**
+   * Method that get the answers stored in player document
+   * @param playerId 
+   */
+  getAnswersByPlayerId(playerId: string) {
+    return this._player.getPlayer(playerId, 'answers')
+      .pipe(
+        map(answersObject => answersObject.answers)
+      )
+  }
 }

@@ -57,6 +57,7 @@ export class PlayerService {
   getSortedPlayers(): Observable<Player[]> {
     return this.getPlayers()
       .pipe(
+        map(players => players.filter(player => player.isCompleted)),
         map(players => {          
             players.sort((playerA, playerB): number => {
             const comparison = playerB.score - playerA.score;
