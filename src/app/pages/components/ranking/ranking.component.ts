@@ -20,7 +20,9 @@ export class RankingComponent implements OnInit, OnDestroy {
     private _ranking: RankingService
   ) {
     this.subscription = new Subscription();
+  }
 
+  ngOnInit(): void {
     const paramsSub = this.route.params.subscribe(params => {
       const level = params.level;
 
@@ -31,11 +33,7 @@ export class RankingComponent implements OnInit, OnDestroy {
       this.subscription.add(playersSub);
     })
 
-    this.subscription.add(paramsSub);
-  }
-
-  ngOnInit(): void {
-      
+    this.subscription.add(paramsSub);   
   }
 
   ngOnDestroy(): void {

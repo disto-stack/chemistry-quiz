@@ -1,10 +1,10 @@
-<div *ngIf="answer && questionData">
+<div *ngIf="answer">
     <back-button toRoute="/review"></back-button>
 
     <section>
         <section>
             <p>{{ questionData.question }}</p>
-            <span>{{ questionData.correctOption }}</span>
+            <span>{{ questionData.correctOption | shortOption }}</span>
         </section>
     </section>
 </div>

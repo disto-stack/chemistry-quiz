@@ -24,23 +24,22 @@ export class ScoreComponent implements OnInit, OnDestroy {
     private _localstorage: LocalstorageService
   ) {
     this.subscriptions = new Subscription();
+  }
 
+  ngOnInit(): void {
     const scoreSubscriptions = [
       this._score.getScoreHit(this._localstorage.playerID).subscribe(success => this.successRate = success, err => console.error(err)),
       this._player.getPlayer(this._localstorage.playerID, 'score', 'time', 'level').subscribe(({ score, time, level }) => {
         this.score = score;
         this.time = time;
         this.level = level;
+      }, err => console.error(err)),
+      this._score.getPosition(this._localstorage.playerID).subscribe(position => {
+        this.position = this.positionPodium(position);
       }, err => console.error(err))
     ]
 
-    scoreSubscriptions.forEach(subs => this.subscriptions.add(subs))
-  }
-
-  ngOnInit() {
-    this._score.getPosition(this._localstorage.playerID).subscribe(position => {
-      this.position = this.positionPodium(position);
-    });
+    scoreSubscriptions.forEach(subs => this.subscriptions.add(subs));
   }
 
   ngOnDestroy(): void {
