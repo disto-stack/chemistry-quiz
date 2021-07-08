@@ -9,6 +9,7 @@ import { ErlenmeyerComponent } from './components/erlenmeyer/erlenmeyer.componen
 import { TrophyComponent } from './components/trophy/trophy.component';
 import { PodiumComponent } from './components/podium/podium.component';
 import { TableComponent } from './components/table/table.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 import { PositionClassPipe } from './pipes/position-class.pipe';
 import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
@@ -28,7 +29,8 @@ import { ShortOptionPipe } from './pipes/short-option.pipe';
     PositionClassPipe,
     PositionSpanishPipe,
     ZeroPositionPipe,
-    ShortOptionPipe
+    ShortOptionPipe,
+    ModalComponent
   ],
   imports: [
     CommonModule
@@ -42,7 +44,8 @@ import { ShortOptionPipe } from './pipes/short-option.pipe';
     TrophyComponent,
     PodiumComponent,
     TableComponent,
-    ShortOptionPipe
+    ShortOptionPipe,
+    ModalComponent
   ]
 })
 export class SharedModule { }

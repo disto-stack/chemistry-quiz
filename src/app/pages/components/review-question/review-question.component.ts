@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
+import { ModalService } from 'src/app/providers/modal.service';
 import { Answer } from 'src/app/types/answer';
 import { Option, Question } from 'src/app/types/question';
 import { ReviewService } from '../../providers/review.service';
@@ -20,7 +21,8 @@ export class ReviewQuestionComponent implements OnInit, OnDestroy {
   constructor(
     private _review: ReviewService,
     private _localstorage: LocalstorageService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _modal: ModalService
   ) {
     this.subscription = new Subscription();
    }
@@ -33,7 +35,7 @@ export class ReviewQuestionComponent implements OnInit, OnDestroy {
         const { answer, ...question } = data;
 
         this.answer = answer;
-        this.questionData = question;
+        this.questionData = question;        
       });
 
       this.subscription.add(reviewSub);
@@ -46,9 +48,15 @@ export class ReviewQuestionComponent implements OnInit, OnDestroy {
     return this.questionData.options[selectedOption].answer;
   }
 
-
   ngOnDestroy(): void {    
     this.subscription.unsubscribe();
   }
 
+  openExplanation() {
+    this._modal.openModal();
+  }
+
+  get explanationModalIsOpened(): boolean {
+    return this._modal.modalIsOpened;
+  }
 }

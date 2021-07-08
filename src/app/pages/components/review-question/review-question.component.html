@@ -7,7 +7,8 @@
 
             <div class="flex flex-col gap-3">
                 <span class="button-primary text-sm md:text-base">
-                    Repuesta correcta: {{ questionData.correctOption | shortOption }}. {{ getOption(questionData.correctOption) }} 
+                    Repuesta correcta: {{ questionData.correctOption | shortOption }}. {{
+                    getOption(questionData.correctOption) }}
                 </span>
                 <span class="text-sm md:text-base" [ngClass]="answer.isCorrect ? 'button-primary' : 'button-error'">
                     Repuesta elegida: {{ answer.selectedOption | shortOption }}. {{ getOption(answer.selectedOption) }}
@@ -16,7 +17,14 @@
         </section>
 
         <section class="mt-10">
-            <a class="text-pallette-dark font-black underline text-xl xl:text-2xl cursor-pointer">Ver explicación</a>
+            <a class="text-pallette-dark font-black underline text-xl xl:text-2xl cursor-pointer"
+                (click)="openExplanation()">
+                Ver explicación
+            </a>
         </section>
     </section>
+</div>
+
+<div *ngIf="explanationModalIsOpened">
+    <app-modal [modalText]="questionData.explanation"></app-modal>
 </div>

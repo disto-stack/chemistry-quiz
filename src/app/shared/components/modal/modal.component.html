@@ -1,0 +1,15 @@
+<div *ngIf="modalText" class="fixed top-0 left-0 z-10 w-full h-full flex justify-center items-center bg-background bg-opacity-95 backdrop-blur">
+    <main class="w-4/5 h-1/2 lg:w-3/5 lg:h-1//2 xl:w-2/5 bg-background-dark p-4 md:p-8 rounded-lg shadow-lg">
+        <svg width="22" height="22" class="ml-auto my-2 md:mb-4 mr-1 cursor-pointer" (click)="closeModal()">
+            <path
+                d="M13.0156 11.018L21.5819 2.45138C22.1394 1.89416 22.1394 0.993207 21.5819 0.435984C21.0247 -0.121239 20.1238 -0.121239 19.5665 0.435984L10.9999 9.00261L2.43352 0.435984C1.87603 -0.121239 0.975339 -0.121239 0.418114 0.435984C-0.139371 0.993207 -0.139371 1.89416 0.418114 2.45138L8.98449 11.018L0.418114 19.5846C-0.139371 20.1419 -0.139371 21.0428 0.418114 21.6C0.695813 21.878 1.06094 22.0176 1.42582 22.0176C1.79069 22.0176 2.15556 21.878 2.43352 21.6L10.9999 13.0334L19.5665 21.6C19.8445 21.878 20.2094 22.0176 20.5742 22.0176C20.9391 22.0176 21.304 21.878 21.5819 21.6C22.1394 21.0428 22.1394 20.1419 21.5819 19.5846L13.0156 11.018Z"
+                fill="#2ECC71" />
+        </svg>
+
+        <div class="flex items-center overflow-y-auto h-5/6">
+            <p class="text-center text-white text-sm md:text-base m-auto">
+                {{ modalText }}
+            </p>
+        </div> 
+    </main>
+</div>
