@@ -8,17 +8,19 @@ import { ScoreComponent } from './components/score/score.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { ReviewComponent } from './components/review/review.component';
 import { ReviewQuestionComponent } from './components/review-question/review-question.component';
+import { PlayerExistsGuard } from '../guards/player-exists.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'choose', component: ChooseComponent },
+  { path: 'choose', component: ChooseComponent, canActivate: [PlayerExistsGuard] },
   { 
     path: 'questions',
-    loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsModule)
+    loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsModule),
+    canActivate: [PlayerExistsGuard]
   },
-  { path: 'score', component: ScoreComponent },
-  { path: 'ranking/:level', component: RankingComponent },
-  { path: 'review', component: ReviewComponent },
+  { path: 'score', component: ScoreComponent, canActivate: [PlayerExistsGuard] },
+  { path: 'ranking/:level', component: RankingComponent, canActivate: [PlayerExistsGuard] },
+  { path: 'review', component: ReviewComponent, canActivate: [PlayerExistsGuard] },
   { path: 'review/:questionId', component: ReviewQuestionComponent, pathMatch: 'full' }
 ]
 

@@ -7,7 +7,9 @@ import { map } from "rxjs/operators";
 import { Player } from 'src/app/types/player';
 import { Answer } from 'src/app/types/answer';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PlayerService {
   private playersDocs: AngularFirestoreCollection<Player>;
 
@@ -69,5 +71,10 @@ export class PlayerService {
           return players;
         })
       )
+  }
+
+  existsPlayer(playerId): Observable<boolean> {
+    return this.playersDocs.doc(playerId).valueChanges()
+      .pipe(map(res => res === undefined ? false : true))
   }
 }

@@ -7,7 +7,7 @@ import { map, withLatestFrom } from 'rxjs/operators';
 import { Answer } from 'src/app/types/answer';
 import { Player } from "src/app/types/player";
 
-import { PlayerService } from './player.service';
+import { PlayerService } from '../../providers/player.service';
 
 @Injectable()
 export class ScoreService {

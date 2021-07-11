@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
 import { Player } from 'src/app/types/player';
-import { PlayerService } from '../../providers/player.service';
+import { PlayerService } from '../../../providers/player.service';
 
 @Component({
   selector: 'app-home',

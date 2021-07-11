@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
-import { PlayerService } from '../../providers/player.service';
+import { PlayerService } from '../../../providers/player.service';
 import { ScoreService } from '../../providers/score.service';
 
 @Component({

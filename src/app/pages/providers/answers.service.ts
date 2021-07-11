@@ -6,7 +6,7 @@ import { LocalstorageService } from 'src/app/providers/localstorage.service';
 import { Answer } from 'src/app/types/answer';
 import { Player } from 'src/app/types/player';
 
-import { PlayerService } from './player.service';
+import { PlayerService } from '../../providers/player.service';
 import { ScoreService } from './score.service';
 
 @Injectable()

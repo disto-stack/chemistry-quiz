@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { Answer } from 'src/app/types/answer';
 import { AnswersService } from './answers.service';
-import { PlayerService } from './player.service';
+import { PlayerService } from '../../providers/player.service';
 import { QuestionsService } from './questions.service';
 
 @Injectable()
