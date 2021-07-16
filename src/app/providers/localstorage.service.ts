@@ -30,7 +30,7 @@ export class LocalstorageService implements OnInit, OnDestroy {
   }
 
   get answers(): Answer[] | undefined {
-    return localStorage.getItem('answers') ? JSON.parse(localStorage.getItem('answers')) : []
+    return localStorage.getItem('answers') ? JSON.parse(localStorage.getItem('answers')) : [];
   }
 
   deletePlayer(): void {

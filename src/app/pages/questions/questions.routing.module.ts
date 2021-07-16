@@ -4,10 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { QuestionsComponent } from './questions.component';
 
+import { LevelExistsGuard } from 'src/app/guards/level-exists.guard';
+
 const routes: Routes = [
   { path: '', 
     children: [
-      { path: ':level', component: QuestionsComponent }
+      { path: ':level', component: QuestionsComponent, canActivate: [LevelExistsGuard] }
     ] 
   }
 ]

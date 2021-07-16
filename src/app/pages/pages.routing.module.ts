@@ -9,6 +9,7 @@ import { RankingComponent } from './components/ranking/ranking.component';
 import { ReviewComponent } from './components/review/review.component';
 import { ReviewQuestionComponent } from './components/review-question/review-question.component';
 import { PlayerExistsGuard } from '../guards/player-exists.guard';
+import { LevelExistsGuard } from '../guards/level-exists.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,9 +20,10 @@ const routes: Routes = [
     canActivate: [PlayerExistsGuard]
   },
   { path: 'score', component: ScoreComponent, canActivate: [PlayerExistsGuard] },
-  { path: 'ranking/:level', component: RankingComponent, canActivate: [PlayerExistsGuard] },
+  { path: 'ranking/:level', component: RankingComponent, canActivate: [PlayerExistsGuard, LevelExistsGuard] },
   { path: 'review', component: ReviewComponent, canActivate: [PlayerExistsGuard] },
-  { path: 'review/:questionId', component: ReviewQuestionComponent, pathMatch: 'full' }
+  { path: 'review/:questionId', component: ReviewQuestionComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '/' }
 ]
 
 @NgModule({
