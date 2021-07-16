@@ -11,6 +11,8 @@ import { ReviewQuestionComponent } from './components/review-question/review-que
 
 import { PlayerExistsGuard } from '../guards/player-exists.guard';
 import { LevelExistsGuard } from '../guards/level-exists.guard';
+import { PlayerIsCompletedGuard } from '../guards/player-is-completed.guard';
+import { PlayerIsNotCompletedGuard } from '../guards/player-is-not-completed.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,11 +20,11 @@ const routes: Routes = [
   { 
     path: 'questions',
     loadChildren: () => import('./questions/questions.module').then(m => m.QuestionsModule),
-    canActivate: [PlayerExistsGuard]
+    canActivate: [PlayerExistsGuard, PlayerIsNotCompletedGuard]
   },
-  { path: 'score', component: ScoreComponent, canActivate: [PlayerExistsGuard] },
+  { path: 'score', component: ScoreComponent, canActivate: [PlayerExistsGuard, PlayerIsCompletedGuard] },
   { path: 'ranking/:level', component: RankingComponent, canActivate: [PlayerExistsGuard, LevelExistsGuard] },
-  { path: 'review', component: ReviewComponent, canActivate: [PlayerExistsGuard] },
+  { path: 'review', component: ReviewComponent, canActivate: [PlayerExistsGuard, PlayerIsCompletedGuard] },
   { path: 'review/:questionId', component: ReviewQuestionComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/' }
 ]

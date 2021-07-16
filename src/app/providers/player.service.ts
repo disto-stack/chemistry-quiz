@@ -73,6 +73,11 @@ export class PlayerService {
       )
   }
 
+  playerIsCompleted(playerId): Observable<boolean> {
+    return this.playersDocs.doc(playerId).valueChanges()
+      .pipe(map(player => player.isCompleted))
+  }
+
   existsPlayer(playerId): Observable<boolean> {
     return this.playersDocs.doc(playerId).valueChanges()
       .pipe(map(res => res === undefined ? false : true))
