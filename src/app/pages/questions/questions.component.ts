@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { QuestionsService } from '../providers/questions.service';
+import { QuestionsService } from '../../providers/questions.service';
 import { TimerService } from './providers/timer.service';
 
 import { Subscription } from 'rxjs';

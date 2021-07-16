@@ -13,6 +13,7 @@ import { PlayerExistsGuard } from '../guards/player-exists.guard';
 import { LevelExistsGuard } from '../guards/level-exists.guard';
 import { PlayerIsCompletedGuard } from '../guards/player-is-completed.guard';
 import { PlayerIsNotCompletedGuard } from '../guards/player-is-not-completed.guard';
+import { QuestionExistsGuard } from '../guards/question-exists.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,7 +26,7 @@ const routes: Routes = [
   { path: 'score', component: ScoreComponent, canActivate: [PlayerExistsGuard, PlayerIsCompletedGuard] },
   { path: 'ranking/:level', component: RankingComponent, canActivate: [PlayerExistsGuard, LevelExistsGuard] },
   { path: 'review', component: ReviewComponent, canActivate: [PlayerExistsGuard, PlayerIsCompletedGuard] },
-  { path: 'review/:questionId', component: ReviewQuestionComponent, pathMatch: 'full' },
+  { path: 'review/:questionId', component: ReviewQuestionComponent, pathMatch: 'full', canActivate: [QuestionExistsGuard] },
   { path: '**', redirectTo: '/' }
 ]
 

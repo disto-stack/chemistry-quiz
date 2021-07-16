@@ -8,7 +8,7 @@ import { ScoreService } from './providers/score.service';
 import { AnswersService } from './providers/answers.service';
 import { RankingService } from './providers/ranking.service';
 import { ReviewService } from './providers/review.service';
-import { QuestionsService } from './providers/questions.service';
+import { QuestionsService } from '../providers/questions.service';
 
 import { HomeComponent } from './components/home/home.component';
 import { ChooseComponent } from './components/choose/choose.component';

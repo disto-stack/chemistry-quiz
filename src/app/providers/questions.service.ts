@@ -4,7 +4,9 @@ import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Question } from 'src/app/types/question';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class QuestionsService {
   private questionsDocs: AngularFirestoreCollection<Question>
    
@@ -30,5 +32,12 @@ export class QuestionsService {
 
   getQuestionById(Id: string): Observable<Question> {
     return this.questionsDocs.doc(Id).get().pipe(map(res => res.data()))
+  }
+
+  exitsQuestion(questionId: string): Observable<boolean> {
+    return this.questionsDocs.doc(questionId).valueChanges()
+      .pipe(
+        map(res => res !== undefined ? true : false)
+      );
   }
 }

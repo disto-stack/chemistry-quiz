@@ -4,7 +4,7 @@
     <section class="customPadding">
         <header>
             <h2 class="text-pallette-primary text-xl text-center font-black md:text-2xl xl:text-3xl">{{ successRate }}% Acierto</h2>
-            <p class="text-center text-white font-black md:text-lg xl:text-xl">{{ score }} pts</p>
+            <p class="text-center text-white font-black md:text-lg xl:text-xl">{{ score ? score : 0 }} pts</p>
         </header>
 
         <body class="customPadding">
@@ -18,7 +18,7 @@
             <a class="link" [routerLink]="['/review']">Ver resumen de las preguntas</a>
             <a class="link" [routerLink]="['/ranking', level]">Ver ranking</a>
             
-            <a class="link mt-4">Volver a intentar</a>
+            <a class="link mt-4" [routerLink]="['/']">Volver a intentar</a>
         </footer>
     </section>
 </div>

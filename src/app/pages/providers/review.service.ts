@@ -3,7 +3,7 @@ import { map, withLatestFrom } from 'rxjs/operators';
 import { Answer } from 'src/app/types/answer';
 import { AnswersService } from './answers.service';
 import { PlayerService } from '../../providers/player.service';
-import { QuestionsService } from './questions.service';
+import { QuestionsService } from '../../providers/questions.service';
 
 @Injectable()
 export class ReviewService {
