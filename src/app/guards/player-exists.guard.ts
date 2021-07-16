@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { first, takeUntil } from 'rxjs/operators';
 
 import { LocalstorageService } from '../providers/localstorage.service';
 import { PlayerService } from '../providers/player.service';
@@ -9,34 +10,31 @@ import { PlayerService } from '../providers/player.service';
   providedIn: 'root'
 })
 export class PlayerExistsGuard implements CanActivate, OnDestroy {
-  private subscription: Subscription;
+  private subjectDestroyer$ = new Subject();
 
   constructor(
     private _router: Router,
     private _localstorage: LocalstorageService,
     private _player: PlayerService
   ) { 
-    this.subscription = new Subscription();
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     
-
     if (this.existsPlayerInLocalStorage()) {
-      const listenerSubscription = this._localstorage.playerExistsListener().subscribe(playerInLocalStorage => {              
+      this._localstorage.playerExistsListener().pipe(takeUntil(this.subjectDestroyer$))
+      .subscribe(playerInLocalStorage => {              
         this.redirect(playerInLocalStorage);
 
-        const playerExistsSubscription = this._player.existsPlayer(this._localstorage.playerID).subscribe(playerExistsInDB => {
-          this.redirect(playerExistsInDB);
-        }, err => console.error(err));
-
-        this.subscription.add(playerExistsSubscription);
+        this._player.existsPlayer(this._localstorage.playerID).pipe(first(), takeUntil(this.subjectDestroyer$))
+          .subscribe(playerExistsInDB => {
+            this.redirect(playerExistsInDB);
+          })
+          
       
       }, err => console.error(err));
-
-      this.subscription.add(listenerSubscription);
     } else {
       this.redirect(this.existsPlayerInLocalStorage())
     }
@@ -52,7 +50,8 @@ export class PlayerExistsGuard implements CanActivate, OnDestroy {
     if (!flag) this._router.navigateByUrl('/');
   }
 
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  ngOnDestroy(): void {    
+    this.subjectDestroyer$.next();
+    this.subjectDestroyer$.complete();
   }
 }
