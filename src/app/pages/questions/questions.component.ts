@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 
 import { Question } from 'src/app/types/question';
 import { AnswersService } from '../providers/answers.service';
+import { LocalstorageService } from 'src/app/providers/localstorage.service';
 
 @Component({
   selector: 'app-questions',
@@ -28,13 +29,16 @@ export class QuestionsComponent implements OnInit {
     private _timer: TimerService,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _answers: AnswersService
+    private _answers: AnswersService,
+    private _localstorage: LocalstorageService
   ) { 
     this.subscriptions = new Subscription();
     this.subscriptions.add(this._route.params.subscribe(params => this.level = params['level']))    
   }
 
   ngOnInit(): void {
+    this._localstorage.deleteAnswers();
+
     this.getQuestionsByLevel();
     this._timer.startCount();
   }

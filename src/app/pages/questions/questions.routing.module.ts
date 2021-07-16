@@ -9,7 +9,10 @@ import { LevelExistsGuard } from 'src/app/guards/level-exists.guard';
 const routes: Routes = [
   { path: '', 
     children: [
-      { path: ':level', component: QuestionsComponent, canActivate: [LevelExistsGuard] }
+      { 
+        path: ':level', component: QuestionsComponent, 
+        canActivate: [LevelExistsGuard]
+      }
     ] 
   }
 ]

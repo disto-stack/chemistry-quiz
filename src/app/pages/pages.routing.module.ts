@@ -8,6 +8,7 @@ import { ScoreComponent } from './components/score/score.component';
 import { RankingComponent } from './components/ranking/ranking.component';
 import { ReviewComponent } from './components/review/review.component';
 import { ReviewQuestionComponent } from './components/review-question/review-question.component';
+
 import { PlayerExistsGuard } from '../guards/player-exists.guard';
 import { LevelExistsGuard } from '../guards/level-exists.guard';
 
