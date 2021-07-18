@@ -1,5 +1,5 @@
 <div *ngIf="question">
-    <section class="section-container question animate__animated animate__fadeIn animate__faster">
+    <section class="section-container question animate__animated animate__slideInRight animate__faster">
 
         <app-timer [time]="time | timer" class="my-0 mx-auto"></app-timer>
 
@@ -11,7 +11,7 @@
         </p>
     </section>
 
-    <section class="mt-6 flex flex-col gap-3 section-container">
+    <section class="mt-6 flex flex-col gap-3 section-container animate__animated animate__slideInRight animate__faster">
 
         <button #buttonRef *ngFor="let option of question.options | keyvalue" [value]="option.key"
             (click)="answer(buttonRef)" class="button-secondary focus:outline-none" [disabled]="isAnswered">
@@ -21,8 +21,4 @@
         </button>
 
     </section>
-</div>
-
-<div *ngIf="!question">
-    <app-spinner></app-spinner>
 </div>

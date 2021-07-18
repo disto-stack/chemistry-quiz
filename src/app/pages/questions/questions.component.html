@@ -1,11 +1,5 @@
-<div *ngIf="actualQuestionId" >
-    <app-question 
-        [questionId]="actualQuestionId" 
-        [questionNumber]="actualIndex" 
-        [questionsLength]="questionsLength"
-        (answeredEmitter)="getActualQuestionId()"
-    >
-    </app-question>
+<div *ngIf="actualQuestionId">
+    <ng-template #dynamicComponentHost></ng-template>
 </div>
 
 <div *ngIf="!actualQuestionId">

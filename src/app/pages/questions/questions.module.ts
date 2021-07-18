@@ -5,6 +5,7 @@ import { QuestionsRoutingModule } from './questions.routing.module';
 
 import { TimerService } from './providers/timer.service';
 import { AnswersService } from '../providers/answers.service';
+import { DynamicComponentsService } from './providers/dynamic-components.service';
 
 import { QuestionsComponent } from './questions.component';
 import { QuestionComponent } from './components/question/question.component';
@@ -20,7 +21,8 @@ import { KatexModule } from 'ng-katex';
   ],
   providers: [
     TimerService,
-    AnswersService
+    AnswersService,
+    DynamicComponentsService
   ],
   imports: [
     CommonModule,
