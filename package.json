@@ -23,6 +23,7 @@
     "@ngneat/tailwind": "^7.0.3",
     "@ngx-pwa/local-storage": "^12.0.0",
     "firebase": "^7.0 || ^8.0",
+    "ng-katex": "^2.0.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"

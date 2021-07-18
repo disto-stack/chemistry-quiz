@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { KatexModule } from 'ng-katex';
 import { PagesRoutingModule } from './pages.routing.module';
 
 import { ScoreService } from './providers/score.service';
@@ -33,6 +34,7 @@ import { TimeTransalePipe } from "./pipes/time.transale.pipe";
     CommonModule,
     SharedModule,
     FormsModule,
+    KatexModule,
     PagesRoutingModule
   ],
   providers: [

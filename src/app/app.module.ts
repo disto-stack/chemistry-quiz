@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 
 import { environment } from '../environments/environment';
 import { PagesRoutingModule } from './pages/pages.routing.module';
+import { KatexModule } from 'ng-katex';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { PagesRoutingModule } from './pages/pages.routing.module';
     AppRoutingModule,
     PagesRoutingModule,
     PagesModule,
+    KatexModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
   bootstrap: [AppComponent]

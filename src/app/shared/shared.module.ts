@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { KatexModule } from 'ng-katex';
 
 import { BackComponent } from './components/back/back.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -26,14 +27,15 @@ import { ShortOptionPipe } from './pipes/short-option.pipe';
     TrophyComponent,
     PodiumComponent,
     TableComponent,
+    ModalComponent,
     PositionClassPipe,
     PositionSpanishPipe,
     ZeroPositionPipe,
-    ShortOptionPipe,
-    ModalComponent
+    ShortOptionPipe
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    KatexModule
   ],
   exports: [
     BackComponent,

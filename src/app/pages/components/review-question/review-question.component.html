@@ -3,15 +3,16 @@
 
     <section class="text-center mt-10 mx-auto xl:w-1/2">
         <section class="bg-background-dark rounded-lg shadow-lg p-4">
-            <p class="text-white text-center text-sm mb-3 md:text-base">{{ questionData.question }}</p>
+            <p class="text-white text-center text-sm mb-3 md:text-base">
+                <ng-katex-paragraph [paragraph]="questionData.question"></ng-katex-paragraph>
+            </p>
 
             <div class="flex flex-col gap-3">
                 <span class="button-primary text-sm md:text-base">
-                    Repuesta correcta: {{ questionData.correctOption | shortOption }}. {{
-                    getOption(questionData.correctOption) }}
+                    <ng-katex-paragraph paragraph="Repuesta correcta: {{ questionData.correctOption | shortOption }}. {{ getOption(questionData.correctOption) }}"></ng-katex-paragraph>
                 </span>
                 <span class="text-sm md:text-base" [ngClass]="answer.isCorrect ? 'button-primary' : 'button-error'">
-                    Repuesta elegida: {{ answer.selectedOption | shortOption }}. {{ getOption(answer.selectedOption) }}
+                    <ng-katex-paragraph paragraph="Respuesta elegida: {{ answer.selectedOption | shortOption }}. {{ getOption(answer.selectedOption) }}"></ng-katex-paragraph>
                 </span>
             </div>
         </section>

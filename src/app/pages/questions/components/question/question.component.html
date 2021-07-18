@@ -7,7 +7,7 @@
         </app-number>
 
         <p class="text-center text-white">
-            {{ question.question }}
+            <ng-katex-paragraph [paragraph]="question.question"></ng-katex-paragraph>
         </p>
     </section>
 
@@ -16,7 +16,7 @@
         <button #buttonRef *ngFor="let option of question.options | keyvalue" [value]="option.key"
             (click)="answer(buttonRef)" class="button-secondary focus:outline-none" [disabled]="isAnswered">
 
-            {{ option.key | shortOption }}. {{ option.value['answer'] }}
+            <ng-katex-paragraph paragraph="{{ option.key | shortOption }}. {{ option.value['answer'] }}"></ng-katex-paragraph>
 
         </button>
 

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { KatexModule } from 'ng-katex';
+
 import { QuestionsRoutingModule } from './questions.routing.module';
 
 import { TimerService } from './providers/timer.service';
@@ -24,6 +26,7 @@ import { TimerPipe } from './pipes/timer.pipe';
   imports: [
     CommonModule,
     QuestionsRoutingModule,
+    KatexModule,
     SharedModule
   ],
   exports: [
