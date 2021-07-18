@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { LocalstorageService } from 'src/app/providers/localstorage.service';
 import { ModalService } from 'src/app/providers/modal.service';
 import { Answer } from 'src/app/types/answer';
-import { Option, Question } from 'src/app/types/question';
+import { Question } from 'src/app/types/question';
 import { ReviewService } from '../../providers/review.service';
 
 @Component({

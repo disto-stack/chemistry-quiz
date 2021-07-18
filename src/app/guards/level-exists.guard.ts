@@ -47,7 +47,7 @@ export class LevelExistsGuard implements CanActivate {
   }
 
   private validLevel(level: string): boolean {
-    const availableLevels = ['easy', 'medium', 'hard'];
+    const availableLevels = ['easy', 'medium'];
 
     return availableLevels.includes(level);
   }

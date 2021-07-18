@@ -42,7 +42,7 @@ export class QuestionsService {
     return this.questionsDocs.doc(Id).get().pipe(map(res => res.data()))
   }
 
-  exitsQuestion(questionId: string): Observable<boolean> {
+  existsQuestion(questionId: string): Observable<boolean> {
     return this.questionsDocs.doc(questionId).valueChanges()
       .pipe(
         map(res => res !== undefined ? true : false)

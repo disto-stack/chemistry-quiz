@@ -16,7 +16,7 @@ export class QuestionExistsGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this._questions.exitsQuestion(route.paramMap.get('questionId'))
+    return this._questions.existsQuestion(route.paramMap.get('questionId'))
             .pipe(
               map(questionExistsInDB => {
                 if (!questionExistsInDB) {
