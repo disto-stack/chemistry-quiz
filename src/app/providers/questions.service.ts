@@ -26,6 +26,14 @@ export class QuestionsService {
           })
 
           return questions;
+        }),
+        map(questionArr => {
+          for (let index = questionArr.length - 1; index > 0; index--) {
+            const randomIndex = Math.floor(Math.random() * (index + 1));
+            [questionArr[index], questionArr[randomIndex]] = [questionArr[randomIndex], questionArr[index]]
+          }
+
+          return questionArr;
         })
       )
   }
