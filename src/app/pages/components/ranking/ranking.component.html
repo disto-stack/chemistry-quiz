@@ -1,6 +1,6 @@
 <back-button toRoute="/score"></back-button>
 
-<section *ngIf="players">
+<section *ngIf="players" class="animate__animated animate__fadeIn animate__fast">
     <app-podium [players]="players"></app-podium>
     
     <app-table [players]="players" class="mx-4"></app-table>
