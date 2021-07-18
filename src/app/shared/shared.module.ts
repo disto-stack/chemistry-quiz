@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { KatexModule } from 'ng-katex';
+import { AtomSpinnerModule } from "angular-epic-spinners";
 
 import { BackComponent } from './components/back/back.component';
 import { LogoComponent } from './components/logo/logo.component';
@@ -16,6 +17,7 @@ import { PositionClassPipe } from './pipes/position-class.pipe';
 import { PositionSpanishPipe } from './pipes/position-spanish.pipe';
 import { ZeroPositionPipe } from './pipes/zero-position.pipe';
 import { ShortOptionPipe } from './pipes/short-option.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +33,13 @@ import { ShortOptionPipe } from './pipes/short-option.pipe';
     PositionClassPipe,
     PositionSpanishPipe,
     ZeroPositionPipe,
-    ShortOptionPipe
+    ShortOptionPipe,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
-    KatexModule
+    KatexModule,
+    AtomSpinnerModule
   ],
   exports: [
     BackComponent,
@@ -47,7 +51,8 @@ import { ShortOptionPipe } from './pipes/short-option.pipe';
     PodiumComponent,
     TableComponent,
     ShortOptionPipe,
-    ModalComponent
+    ModalComponent,
+    SpinnerComponent
   ]
 })
 export class SharedModule { }

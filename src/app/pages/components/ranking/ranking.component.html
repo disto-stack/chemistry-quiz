@@ -5,3 +5,7 @@
     
     <app-table [players]="players" class="mx-4"></app-table>
 </section>
+
+<div *ngIf="!players">
+    <app-spinner></app-spinner>
+</div>

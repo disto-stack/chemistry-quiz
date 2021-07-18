@@ -26,6 +26,10 @@
     </section>
 </div>
 
+<div *ngIf="!answer">
+    <app-spinner></app-spinner>
+</div>
+
 <div *ngIf="explanationModalIsOpened">
     <app-modal [modalText]="questionData.explanation"></app-modal>
 </div>

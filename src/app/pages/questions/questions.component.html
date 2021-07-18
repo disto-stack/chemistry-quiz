@@ -5,6 +5,9 @@
         [questionsLength]="questionsLength"
         (answeredEmitter)="getActualQuestionId()"
     >
-
     </app-question>
+</div>
+
+<div *ngIf="!actualQuestionId">
+    <app-spinner></app-spinner>
 </div>

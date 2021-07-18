@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { KatexModule } from 'ng-katex';
-
 import { QuestionsRoutingModule } from './questions.routing.module';
 
 import { TimerService } from './providers/timer.service';
@@ -12,6 +10,7 @@ import { QuestionsComponent } from './questions.component';
 import { QuestionComponent } from './components/question/question.component';
 
 import { TimerPipe } from './pipes/timer.pipe';
+import { KatexModule } from 'ng-katex';
 
 @NgModule({
   declarations: [
